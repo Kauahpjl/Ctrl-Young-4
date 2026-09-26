@@ -1,5 +1,8 @@
 C:\Users\CTRL-PLAY\Desktop\Kaua-Aurudo-SixSeven-da-Silva-CY4\CY4\MongoDB
 
+net start MongoDB
+sc query MongoDB
+
 Eu tava assistindo fruta com sabor novela
 Só que aí eu perdi aura e desliguei a minha tela
 Fui lá com o meu mano, juro, véi, ele é um betinha
