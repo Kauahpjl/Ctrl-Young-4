@@ -27,7 +27,10 @@ const app = express();
 // Executa a função de conexão com o banco de dados.
 // A partir daqui, a aplicação tenta estabelecer conexão
 // com o MongoDB.
+const bookRoutes = require('./routes/bookRoutes');
 connectDB();
+app.use(express.json());
+app.use('/api', bookRoutes);
 
 
 // Middleware responsável por transformar JSON recebido nas requisições
