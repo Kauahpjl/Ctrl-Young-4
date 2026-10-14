@@ -1,22 +1,25 @@
+// Importa o middleware responsável por validar o título
 const validateTitle = require("../middlewares/validateTitle");
-const Book = require("../models/book");
 
+// Importa o Express, framework utilizado para criar o servidor
 const express = require("express");
+
+// Cria um roteador para organizar as rotas da aplicação
 const router = express.Router();
-const express = require("express");
 
-router.post("/books", validateTitle, async (req, res) => {
- try {
-   const { title, author, year, genre } = req.body;
-   const newBook = new Book({ title, author, year, genre });
-   await newBook.save();
-   res.status(201).json(newBook);
- } catch (err) {
-   res.status(500).json({ error: "Erro ao criar livro" });
- }
-});
+// Importa o controller responsável pelas operações com livros
+const bookController = require("../controllers/bookController");
 
-const bookController = require('../controllers/bookController');
-router.post("/books", validateTitle, bookController.createBook);
+// Cria uma rota POST para cadastrar novos livros
+router.post(
+  "/books",
 
-module.exports = router
+  // Verifica se o título enviado é válido
+  validateTitle,
+
+  // Executa a função responsável por criar e salvar o livro
+  bookController.createBook
+);
+
+// Exporta o roteador para ser utilizado em outros arquivos
+module.exports = router;

@@ -24,12 +24,19 @@ const Book = require("./models/book");
 const app = express();
 
 
-// Executa a função de conexão com o banco de dados.
-// A partir daqui, a aplicação tenta estabelecer conexão
-// com o MongoDB.
+ // Importa as rotas responsáveis pelas operações com livros
 const bookRoutes = require('./routes/bookRoutes');
+
+// Executa a função de conexão com o banco de dados
+// A aplicação tenta estabelecer conexão com o MongoDB
 connectDB();
+
+// Middleware que permite ao Express interpretar dados JSON
+// enviados no corpo das requisições
 app.use(express.json());
+
+// Registra as rotas dos livros com o prefixo '/api'
+// Exemplo: POST /api/books
 app.use('/api', bookRoutes);
 
 
